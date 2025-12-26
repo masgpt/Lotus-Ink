@@ -2,11 +2,11 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  // Vercel and standard SPA deployments use '/'
+  // Use root base for Vercel
   base: '/',
   plugins: [react()],
   define: {
-    // Ensuring environment variables are handled correctly
+    // Injects the API Key from the Vercel environment variables
     'process.env.API_KEY': JSON.stringify(process.env.API_KEY),
   },
   server: {
@@ -15,7 +15,14 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: false, // Cleaner for production
+    sourcemap: false,
     minify: 'esbuild',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom', 'framer-motion'],
+        },
+      },
+    },
   },
 });
