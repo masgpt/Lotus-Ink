@@ -1,5 +1,6 @@
 
 import React from 'react';
+// Fix: Re-importing Link and useLocation from react-router-dom to ensure they are correctly resolved
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, BookOpen, MapPin, Mail, Clock, Info } from 'lucide-react';

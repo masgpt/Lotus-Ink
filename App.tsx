@@ -1,11 +1,12 @@
 
 import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import { Layout } from './components/Layout.tsx';
-import { Home } from './pages/Home.tsx';
-import { About } from './pages/About.tsx';
-import { Locations } from './pages/Locations.tsx';
-import { Contact } from './pages/Contact.tsx';
+// Fix: Switching to BrowserRouter and ensuring clean imports from react-router-dom to fix missing member errors
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Layout } from './components/Layout';
+import { Home } from './pages/Home';
+import { About } from './pages/About';
+import { Locations } from './pages/Locations';
+import { Contact } from './pages/Contact';
 
 const App: React.FC = () => {
   return (

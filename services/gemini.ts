@@ -1,9 +1,10 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
 export async function getBookRecommendations(userPreference: string) {
+  // Always create a new instance right before making an API call to ensure it always uses the most up-to-date API key
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  
   try {
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
@@ -33,7 +34,15 @@ export async function getBookRecommendations(userPreference: string) {
       }
     });
 
-    return JSON.parse(response.text);
+    // Directly access the .text property
+    const text = response.text;
+    if (!text) {
+      throw new Error("Empty response from model");
+    }
+
+    // Clean potential markdown formatting if the model includes it despite the mimeType
+    const jsonString = text.trim().replace(/^```json\n?/, '').replace(/\n?```$/, '');
+    return JSON.parse(jsonString);
   } catch (error) {
     console.error("Gemini recommendation error:", error);
     return null;
