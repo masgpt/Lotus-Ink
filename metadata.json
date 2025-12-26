@@ -1,0 +1,7 @@
+{
+  "name": "Lotus & Ink: Asian American Bookstore",
+  "description": "A premium, animated bookstore landing page specializing in used books by Asian American authors in Los Angeles, featuring a book discovery AI and interactive location details.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
