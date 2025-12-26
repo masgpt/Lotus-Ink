@@ -3,8 +3,8 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  // Using '/' base for broader compatibility across container and static hosts.
-  base: '/',
+  // Must match the GitHub repository name for correct asset resolution
+  base: '/Lotus-Ink/',
   plugins: [react()],
   define: {
     'process.env.API_KEY': JSON.stringify(process.env.API_KEY),
